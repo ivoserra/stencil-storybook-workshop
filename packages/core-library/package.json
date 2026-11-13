@@ -1,0 +1,60 @@
+{
+  "name": "core-library",
+  "version": "0.0.1",
+  "description": "Stencil Component Starter",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/core-library/core-library.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/core-library/core-library.esm.js",
+      "require": "./dist/core-library/core-library.cjs.js"
+    },
+    "./dist/components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./dist/*": {
+      "types": "./dist/*",
+      "import": "./dist/*"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stenciljs/component-starter.git"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil-test --prod",
+    "test:watch": "stencil-test --prod --watch",
+    "generate": "stencil generate"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.27.1 || ^5.0.0-0",
+    "@stencil/react-output-target": "^1.8.1",
+    "@stencil/vitest": "^1.8.3",
+    "@stencil/vue-output-target": "^0.15.0",
+    "@types/node": "^22.13.5",
+    "@vitest/browser-playwright": "^4.0.0",
+    "playwright": "^1.52.0",
+    "vitest": "^4.0.0"
+  },
+  "license": "MIT"
+}

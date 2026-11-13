@@ -1,0 +1,12 @@
+{
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "npm@8.5.0",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "turbo": "^2.11.11",
+    "typescript": "5.9.3"
+  }
+}
