@@ -1,14 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
+    <!-- GEIST Font google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 
+    <!-- This is a Stencil component library. The following tags are required for the library to work properly. -->
     <script type="module" src="/build/core-library.esm.js"></script>
     <script nomodule src="/build/core-library.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <my-component first="Stencil" last="Component"></my-component>
+    <ui-typography variant="h1">Hello, World!</ui-typography>
+    <ui-typography variant="h2">Hello, World!</ui-typography>
+    <ui-typography variant="h3">Hello, World!</ui-typography>
+    <ui-typography variant="h4">Hello, World!</ui-typography>
+    <ui-typography variant="h5">Hello, World!</ui-typography>
+    <ui-typography variant="h6">Hello, World!</ui-typography>
   </body>
 </html>

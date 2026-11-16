@@ -16,3 +16,8 @@ export const MyComponent: StencilVueComponent<JSX.MyComponent> = /*@__PURE__*/ d
 ]);
 
 
+export const UiTypography: StencilVueComponent<JSX.UiTypography> = /*@__PURE__*/ defineContainer<JSX.UiTypography>('ui-typography', undefined, [
+  'variant'
+]);
+
+

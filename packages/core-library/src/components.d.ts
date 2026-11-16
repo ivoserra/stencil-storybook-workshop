@@ -20,6 +20,12 @@ export namespace Components {
          */
         "middle"?: string;
     }
+    interface UiTypography {
+        /**
+          * @default 'h1'
+         */
+        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +34,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLUiTypographyElement extends Components.UiTypography, HTMLStencilElement {
+    }
+    var HTMLUiTypographyElement: {
+        prototype: HTMLUiTypographyElement;
+        new (): HTMLUiTypographyElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "ui-typography": HTMLUiTypographyElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,15 +60,25 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface UiTypography {
+        /**
+          * @default 'h1'
+         */
+        "variant"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    }
 
     interface MyComponentAttributes {
         "first": string;
         "middle": string;
         "last": string;
     }
+    interface UiTypographyAttributes {
+        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    }
 
     interface IntrinsicElements {
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
+        "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -63,6 +86,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ui-typography": LocalJSX.IntrinsicElements["ui-typography"] & JSXBase.HTMLAttributes<HTMLUiTypographyElement>;
         }
     }
 }
