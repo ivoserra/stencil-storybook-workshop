@@ -1,0 +1,90 @@
+:root,
+:host {
+  --ui-font-family: 'Geist', sans-serif;
+
+  --ui-space-xsmall: 2px;
+  --ui-space-small: 4px;
+  --ui-space-medium: 8px;
+  --ui-space-large: 16px;
+  --ui-space-xlarge: 24px;
+  --ui-space-xxlarge: 32px;
+
+  --ui-border-small: 1px;
+
+  --ui-radius-small: 0.25em;
+  --ui-radius-medium: 0.5em;
+  --ui-radius-large: 0.75em;
+  --ui-radius-xlarge: 1em;
+  --ui-radius-full: 50%;
+
+  --ui-padding-xsmall: 1px;
+  --ui-padding-small: 2px;
+  --ui-padding-medium: 4px;
+  --ui-padding-large: 8px;
+  --ui-padding-xlarge: 16px;
+  --ui-padding-xxlarge: 24px;
+
+  --ui-accent-color: #0a84ff;
+  --ui-label-color: #000000;
+  --ui-secondary-background: lightgray;
+
+  --ui-hover-opacity: 0.7;
+
+  --ui-tooltip-background: #2b2b2b;
+  --ui-tooltip-text-color: #ffffff;
+
+  --ui-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  --ui-menu-background: #ffffff;
+
+  --ui-sidebar-background: #ffffff;
+
+  --ui-modal-background: #ffffff;
+
+  --ui-border-color: #e0e0e0;
+
+  --ui-color-success: #28a745;
+  --ui-color-error: #dc3545;
+  --ui-color-warning: #ffc107;
+  --ui-color-focus: #00ffee;
+  --ui-placeholder-color: #a0a0a0;
+
+  --ui-tab-background: #efefef;
+  --ui-tab-active-background: #ffffff;
+  --ui-tab-border-color: #d7d7d7;
+
+  --ui-table-border-color: #e0e0e0;
+  --ui-table-thead-background: #f9f9f9;
+  --ui-table-row-hover-background: #f1f1f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #121212;
+  }
+
+  :root,
+  :host {
+    --ui-label-color: #ffffff;
+    --ui-secondary-background: #1e1e1e;
+
+    --ui-tooltip-background: #333333;
+    --ui-tooltip-text-color: #ffffff;
+
+    --ui-menu-background: #1e1e1e;
+
+    --ui-sidebar-background: #1e1e1e;
+
+    --ui-modal-background: #1e1e1e;
+
+    --ui-border-color: #444444;
+
+    --ui-tab-background: #2c2c2c;
+    --ui-tab-active-background: #3c3c3c;
+    --ui-tab-border-color: #555555;
+
+    --ui-table-border-color: #444444;
+    --ui-table-thead-background: #2c2c2c;
+    --ui-table-row-hover-background: #333333;
+  }
+}

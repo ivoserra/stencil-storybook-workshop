@@ -2,7 +2,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ui-typography',
-  styleUrl: 'ui-typography.css',
+  styleUrl: 'ui-typography.scss',
   shadow: true,
 })
 export class UITypography {
