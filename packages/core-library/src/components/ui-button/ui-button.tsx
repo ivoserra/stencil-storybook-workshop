@@ -18,7 +18,7 @@ export class UIButton {
 
   // Content
   @Prop() label: string = 'Button';
-  @Prop() icon: string  = '';
+  @Prop() icon: string = '';
   @Prop() iconPosition: 'left' | 'right' = 'left';
 
   // ARIA
@@ -34,7 +34,6 @@ export class UIButton {
 
   private handleClick = (event: MouseEvent) => {
     if (this.disabled || this.loading) return;
-
     this.buttonClick.emit(event);
   };
 
@@ -48,7 +47,7 @@ export class UIButton {
           [this.variant]: true,
           [this.size]: true,
           'is-loading': this.loading,
-          'active': this.active
+          'active': this.active ?? this.ariaPressed,
         }}
         type={this.type}
         disabled={isDisabled}
