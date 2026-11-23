@@ -12,13 +12,22 @@ export class UIButton {
 
   // Behaviour
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
-  @Prop() disabled = false;
-  @Prop() loading = false;
+  @Prop() disabled: boolean = false;
+  @Prop() loading: boolean = false;
+  @Prop() active: boolean = false;
 
   // Content
-  @Prop() label = 'Button';
-  @Prop() icon = '';
+  @Prop() label: string = 'Button';
+  @Prop() icon: string  = '';
   @Prop() iconPosition: 'left' | 'right' = 'left';
+
+  // ARIA
+  @Prop() ariaLabel?: string = '';
+  @Prop() ariaDescribedBy?: string = '';
+  @Prop() ariaControls: string = '';
+  @Prop() ariaExpanded?: boolean;
+  @Prop() ariaHaspopup?: boolean | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
+  @Prop() ariaPressed?: boolean;
 
   // Events
   @Event() buttonClick!: EventEmitter<MouseEvent>;
@@ -39,27 +48,32 @@ export class UIButton {
           [this.variant]: true,
           [this.size]: true,
           'is-loading': this.loading,
+          'active': this.active
         }}
         type={this.type}
         disabled={isDisabled}
-        aria-busy={this.loading ? 'true' : null}
         onClick={this.handleClick}
+        aria-busy={this.loading ? 'true' : null}
+        aria-label={this.ariaLabel || null}
+        aria-describedby={this.ariaDescribedBy || null}
+        aria-controls={this.ariaControls || null}
+        aria-expanded={this.ariaExpanded}
+        aria-haspopup={this.ariaHaspopup}
+        aria-pressed={this.ariaPressed ?? this.active}
       >
-        {this.loading && <span class="loader" aria-hidden="true" />}
-
-        {!this.loading && this.icon && this.iconPosition === 'left' && <ui-icon name={this.icon} aria-hidden="true" />}
-
-        <span class="ui-button__label">
-          <slot>{this.label}</slot>
-        </span>
-
-        {!this.loading && this.icon && this.iconPosition === 'right' && <ui-icon name={this.icon} aria-hidden="true" />}
-
         {this.loading && (
-          <span class="sr-only" role="status">
+          <span class="loader" aria-hidden="true" role="status">
             Loading
           </span>
         )}
+
+        {!this.loading && this.icon && this.iconPosition === 'left' && <ui-icon name={this.icon} aria-hidden="true" />}
+
+        {this.label && <span class="ui-button__label">{this.label}</span>}
+
+        {!this.loading && this.icon && this.iconPosition === 'right' && <ui-icon name={this.icon} aria-hidden="true" />}
+
+        <slot />
       </button>
     );
   }
