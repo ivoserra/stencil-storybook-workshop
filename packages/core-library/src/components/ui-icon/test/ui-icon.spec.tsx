@@ -1,10 +1,11 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { UiIcon } from '../ui-icon';
+import { UIIcon } from '../ui-icon';
+import { describe, expect, it } from '@stencil/vitest';
 
 describe('ui-icon', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [UiIcon],
+      components: [UIIcon],
       html: `<ui-icon></ui-icon>`,
     });
     expect(page.root).toEqualHtml(`

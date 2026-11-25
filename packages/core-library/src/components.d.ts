@@ -20,12 +20,82 @@ export namespace Components {
          */
         "middle"?: string;
     }
+    interface UiButton {
+        /**
+          * @default false
+         */
+        "active": boolean;
+        /**
+          * @default ''
+         */
+        "ariaControls": string;
+        /**
+          * @default ''
+         */
+        "ariaDescribedBy"?: string;
+        "ariaExpanded"?: boolean;
+        "ariaHaspopup"?: boolean | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
+        /**
+          * @default ''
+         */
+        "ariaLabel"?: string;
+        "ariaPressed"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default ''
+         */
+        "icon": string;
+        /**
+          * @default 'left'
+         */
+        "iconPosition": 'left' | 'right';
+        /**
+          * @default 'Button'
+         */
+        "label": string;
+        /**
+          * @default false
+         */
+        "loading": boolean;
+        /**
+          * @default 'medium'
+         */
+        "size": 'small' | 'medium' | 'large';
+        /**
+          * @default 'button'
+         */
+        "type": 'button' | 'submit' | 'reset';
+        /**
+          * @default 'primary'
+         */
+        "variant": 'primary' | 'secondary' | 'danger' | 'ghost';
+    }
+    interface UiIcon {
+    }
+    interface UiTooltip {
+        "content"?: string;
+        /**
+          * @default 'bottom'
+         */
+        "placement"?: 'top' | 'bottom' | 'left' | 'right';
+    }
     interface UiTypography {
         /**
           * @default 'h1'
          */
         "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     }
+    interface UiXstack {
+    }
+    interface UiYstack {
+    }
+}
+export interface UiButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUiButtonElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -34,15 +104,61 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLUiButtonElementEventMap {
+        "buttonClick": MouseEvent;
+    }
+    interface HTMLUiButtonElement extends Components.UiButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUiButtonElementEventMap>(type: K, listener: (this: HTMLUiButtonElement, ev: UiButtonCustomEvent<HTMLUiButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUiButtonElementEventMap>(type: K, listener: (this: HTMLUiButtonElement, ev: UiButtonCustomEvent<HTMLUiButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUiButtonElement: {
+        prototype: HTMLUiButtonElement;
+        new (): HTMLUiButtonElement;
+    };
+    interface HTMLUiIconElement extends Components.UiIcon, HTMLStencilElement {
+    }
+    var HTMLUiIconElement: {
+        prototype: HTMLUiIconElement;
+        new (): HTMLUiIconElement;
+    };
+    interface HTMLUiTooltipElement extends Components.UiTooltip, HTMLStencilElement {
+    }
+    var HTMLUiTooltipElement: {
+        prototype: HTMLUiTooltipElement;
+        new (): HTMLUiTooltipElement;
+    };
     interface HTMLUiTypographyElement extends Components.UiTypography, HTMLStencilElement {
     }
     var HTMLUiTypographyElement: {
         prototype: HTMLUiTypographyElement;
         new (): HTMLUiTypographyElement;
     };
+    interface HTMLUiXstackElement extends Components.UiXstack, HTMLStencilElement {
+    }
+    var HTMLUiXstackElement: {
+        prototype: HTMLUiXstackElement;
+        new (): HTMLUiXstackElement;
+    };
+    interface HTMLUiYstackElement extends Components.UiYstack, HTMLStencilElement {
+    }
+    var HTMLUiYstackElement: {
+        prototype: HTMLUiYstackElement;
+        new (): HTMLUiYstackElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "ui-button": HTMLUiButtonElement;
+        "ui-icon": HTMLUiIconElement;
+        "ui-tooltip": HTMLUiTooltipElement;
         "ui-typography": HTMLUiTypographyElement;
+        "ui-xstack": HTMLUiXstackElement;
+        "ui-ystack": HTMLUiYstackElement;
     }
 }
 declare namespace LocalJSX {
@@ -60,11 +176,78 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface UiButton {
+        /**
+          * @default false
+         */
+        "active"?: boolean;
+        /**
+          * @default ''
+         */
+        "ariaControls"?: string;
+        /**
+          * @default ''
+         */
+        "ariaDescribedBy"?: string;
+        "ariaExpanded"?: boolean;
+        "ariaHaspopup"?: boolean | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
+        /**
+          * @default ''
+         */
+        "ariaLabel"?: string;
+        "ariaPressed"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default ''
+         */
+        "icon"?: string;
+        /**
+          * @default 'left'
+         */
+        "iconPosition"?: 'left' | 'right';
+        /**
+          * @default 'Button'
+         */
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "loading"?: boolean;
+        "onButtonClick"?: (event: UiButtonCustomEvent<MouseEvent>) => void;
+        /**
+          * @default 'medium'
+         */
+        "size"?: 'small' | 'medium' | 'large';
+        /**
+          * @default 'button'
+         */
+        "type"?: 'button' | 'submit' | 'reset';
+        /**
+          * @default 'primary'
+         */
+        "variant"?: 'primary' | 'secondary' | 'danger' | 'ghost';
+    }
+    interface UiIcon {
+    }
+    interface UiTooltip {
+        "content"?: string;
+        /**
+          * @default 'bottom'
+         */
+        "placement"?: 'top' | 'bottom' | 'left' | 'right';
+    }
     interface UiTypography {
         /**
           * @default 'h1'
          */
         "variant"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    }
+    interface UiXstack {
+    }
+    interface UiYstack {
     }
 
     interface MyComponentAttributes {
@@ -72,13 +255,39 @@ declare namespace LocalJSX {
         "middle": string;
         "last": string;
     }
+    interface UiButtonAttributes {
+        "variant": 'primary' | 'secondary' | 'danger' | 'ghost';
+        "size": 'small' | 'medium' | 'large';
+        "type": 'button' | 'submit' | 'reset';
+        "disabled": boolean;
+        "loading": boolean;
+        "active": boolean;
+        "label": string;
+        "icon": string;
+        "iconPosition": 'left' | 'right';
+        "ariaLabel": string;
+        "ariaDescribedBy": string;
+        "ariaControls": string;
+        "ariaExpanded": boolean;
+        "ariaHaspopup": string;
+        "ariaPressed": boolean;
+    }
+    interface UiTooltipAttributes {
+        "content": string;
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+    }
     interface UiTypographyAttributes {
         "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
     }
 
     interface IntrinsicElements {
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
+        "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
+        "ui-icon": UiIcon;
+        "ui-tooltip": Omit<UiTooltip, keyof UiTooltipAttributes> & { [K in keyof UiTooltip & keyof UiTooltipAttributes]?: UiTooltip[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `attr:${K}`]?: UiTooltipAttributes[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `prop:${K}`]?: UiTooltip[K] };
         "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
+        "ui-xstack": UiXstack;
+        "ui-ystack": UiYstack;
     }
 }
 export { LocalJSX as JSX };
@@ -86,7 +295,12 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ui-button": LocalJSX.IntrinsicElements["ui-button"] & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
+            "ui-icon": LocalJSX.IntrinsicElements["ui-icon"] & JSXBase.HTMLAttributes<HTMLUiIconElement>;
+            "ui-tooltip": LocalJSX.IntrinsicElements["ui-tooltip"] & JSXBase.HTMLAttributes<HTMLUiTooltipElement>;
             "ui-typography": LocalJSX.IntrinsicElements["ui-typography"] & JSXBase.HTMLAttributes<HTMLUiTypographyElement>;
+            "ui-xstack": LocalJSX.IntrinsicElements["ui-xstack"] & JSXBase.HTMLAttributes<HTMLUiXstackElement>;
+            "ui-ystack": LocalJSX.IntrinsicElements["ui-ystack"] & JSXBase.HTMLAttributes<HTMLUiYstackElement>;
         }
     }
 }

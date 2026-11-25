@@ -66,11 +66,13 @@ export class UIButton {
           </span>
         )}
 
-        {!this.loading && this.icon && this.iconPosition === 'left' && <ui-icon name={this.icon} aria-hidden="true" />}
+        {/* <ui-icon name={this.icon} aria-hidden="true" /> */}
+
+        {!this.loading && this.icon && this.iconPosition === 'left' && <span>icons</span>}
 
         {this.label && <span class="ui-button__label">{this.label}</span>}
 
-        {!this.loading && this.icon && this.iconPosition === 'right' && <ui-icon name={this.icon} aria-hidden="true" />}
+        {!this.loading && this.icon && this.iconPosition === 'right' && <span>icon</span>}
 
         <slot />
       </button>

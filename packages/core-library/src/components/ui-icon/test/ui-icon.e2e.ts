@@ -1,4 +1,5 @@
 import { newE2EPage } from '@stencil/core/testing';
+import { describe, expect, it } from '@stencil/vitest';
 
 describe('ui-icon', () => {
   it('renders', async () => {
