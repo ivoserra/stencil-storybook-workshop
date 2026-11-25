@@ -5,7 +5,7 @@ import { vueOutputTarget } from '@stencil/vue-output-target';
 
 export const config: Config = {
   namespace: 'core-library',
-  globalStyle: 'src/global/global.css',
+  globalStyle: 'src/global.css',
   plugins: [sass()],
   devServer: {
     openBrowser: true,
@@ -34,7 +34,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [{ src: '**/*.html' }, {src:'**/*.css'}],
+      copy: [{ src: '**/*.html' }, { src: '**/*.css' }],
     },
   ],
 };

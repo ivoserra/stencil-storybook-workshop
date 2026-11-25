@@ -47,7 +47,7 @@ export class UIButton {
           [this.variant]: true,
           [this.size]: true,
           'is-loading': this.loading,
-          'active': this.active ?? this.ariaPressed,
+          'active': this.active,
         }}
         type={this.type}
         disabled={isDisabled}

@@ -1,5 +1,6 @@
 :host {
   display: inline-block;
+  position:relative;
 
   [popover] {
     border: none;
@@ -33,4 +34,5 @@
       transform: rotate(45deg);
     }
   }
+
 }

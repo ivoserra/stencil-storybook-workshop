@@ -1,5 +1,5 @@
 import { computePosition, offset, flip, shift, arrow, autoUpdate } from '@floating-ui/dom';
-import { Component, Host, Prop, h, State, Listen, Element } from '@stencil/core';
+import { Component, Host, Prop, h, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'ui-tooltip',
@@ -21,10 +21,10 @@ export class UITooltip {
     this.autoUpdateCleanUp?.();
   }
 
-  @Listen('mouseenter')
+/*   @Listen('mouseenter')
   onTouchStart() {
     this.isUsingTouch = true;
-  }
+  } */
 
   private positionTooltip() {
     computePosition(this.host, this.tooltipRef, {
@@ -77,13 +77,13 @@ export class UITooltip {
         <slot></slot>
         <p ref={ref => (ref ? (this.tooltipRef = ref) : undefined)} popover="true" role="tooltip">
           {this.content}
-        </p>
-        <span
+                  <span
           ref={ref => {
             ref ? (this.arrowRef = ref) : undefined;
           }}
           class="arrow"
         />
+        </p>
       </Host>
     );
   }

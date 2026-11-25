@@ -11,8 +11,14 @@ import React from 'react';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import type { Components } from 'core-library/dist/components';
 import { MyComponent as MyComponentElement, defineCustomElement as defineMyComponent } from 'core-library/dist/components/my-component.js';
+import { UiButton as UiButtonElement, defineCustomElement as defineUiButton } from 'core-library/dist/components/ui-button.js';
+import { UiIcon as UiIconElement, defineCustomElement as defineUiIcon } from 'core-library/dist/components/ui-icon.js';
+import { UiTooltip as UiTooltipElement, defineCustomElement as defineUiTooltip } from 'core-library/dist/components/ui-tooltip.js';
 import { UiTypography as UiTypographyElement, defineCustomElement as defineUiTypography } from 'core-library/dist/components/ui-typography.js';
-import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
+import { UiXstack as UiXstackElement, defineCustomElement as defineUiXstack } from 'core-library/dist/components/ui-xstack.js';
+import { UiYstack as UiYstackElement, defineCustomElement as defineUiYstack } from 'core-library/dist/components/ui-ystack.js';
+import type { UiButtonCustomEvent } from 'core-library';
+import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type MyComponentEvents = NonNullable<unknown>;
 
@@ -25,6 +31,43 @@ export const MyComponent: StencilReactComponent<MyComponentElement, MyComponentE
     defineCustomElement: defineMyComponent,
 });
 
+export type UiButtonEvents = {
+  onButtonClick: EventName<UiButtonCustomEvent<MouseEvent>>
+};
+
+export const UiButton: StencilReactComponent<UiButtonElement, UiButtonEvents, Components.UiButton> = /*@__PURE__*/ createComponent<UiButtonElement, UiButtonEvents, Components.UiButton>({
+    tagName: 'ui-button',
+    elementClass: UiButtonElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+      onButtonClick: 'buttonClick'
+    } as UiButtonEvents,
+    defineCustomElement: defineUiButton,
+});
+
+export type UiIconEvents = NonNullable<unknown>;
+
+export const UiIcon: StencilReactComponent<UiIconElement, UiIconEvents, Components.UiIcon> = /*@__PURE__*/ createComponent<UiIconElement, UiIconEvents, Components.UiIcon>({
+    tagName: 'ui-icon',
+    elementClass: UiIconElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as UiIconEvents,
+    defineCustomElement: defineUiIcon,
+});
+
+export type UiTooltipEvents = NonNullable<unknown>;
+
+export const UiTooltip: StencilReactComponent<UiTooltipElement, UiTooltipEvents, Components.UiTooltip> = /*@__PURE__*/ createComponent<UiTooltipElement, UiTooltipEvents, Components.UiTooltip>({
+    tagName: 'ui-tooltip',
+    elementClass: UiTooltipElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as UiTooltipEvents,
+    defineCustomElement: defineUiTooltip,
+});
+
 export type UiTypographyEvents = NonNullable<unknown>;
 
 export const UiTypography: StencilReactComponent<UiTypographyElement, UiTypographyEvents, Components.UiTypography> = /*@__PURE__*/ createComponent<UiTypographyElement, UiTypographyEvents, Components.UiTypography>({
@@ -34,4 +77,26 @@ export const UiTypography: StencilReactComponent<UiTypographyElement, UiTypograp
     react: React,
     events: {} as UiTypographyEvents,
     defineCustomElement: defineUiTypography,
+});
+
+export type UiXstackEvents = NonNullable<unknown>;
+
+export const UiXstack: StencilReactComponent<UiXstackElement, UiXstackEvents, Components.UiXstack> = /*@__PURE__*/ createComponent<UiXstackElement, UiXstackEvents, Components.UiXstack>({
+    tagName: 'ui-xstack',
+    elementClass: UiXstackElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as UiXstackEvents,
+    defineCustomElement: defineUiXstack,
+});
+
+export type UiYstackEvents = NonNullable<unknown>;
+
+export const UiYstack: StencilReactComponent<UiYstackElement, UiYstackEvents, Components.UiYstack> = /*@__PURE__*/ createComponent<UiYstackElement, UiYstackEvents, Components.UiYstack>({
+    tagName: 'ui-ystack',
+    elementClass: UiYstackElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as UiYstackEvents,
+    defineCustomElement: defineUiYstack,
 });

@@ -1,4 +1,4 @@
-ui-button {
+:host {
   display: inline-block;
 
   button {
@@ -43,11 +43,6 @@ ui-button {
       opacity: 0.5;
       background-color: var(--ui-secondary-background);
       color: var(--ui-label-color);
-    }
-
-    ui-icon {
-      width: 14px;
-      height: 14px;
     }
   }
 }
