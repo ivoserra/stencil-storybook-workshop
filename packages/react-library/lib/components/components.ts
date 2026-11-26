@@ -13,6 +13,7 @@ import type { Components } from 'core-library/dist/components';
 import { MyComponent as MyComponentElement, defineCustomElement as defineMyComponent } from 'core-library/dist/components/my-component.js';
 import { UiButton as UiButtonElement, defineCustomElement as defineUiButton } from 'core-library/dist/components/ui-button.js';
 import { UiIcon as UiIconElement, defineCustomElement as defineUiIcon } from 'core-library/dist/components/ui-icon.js';
+import { UiMenu as UiMenuElement, defineCustomElement as defineUiMenu } from 'core-library/dist/components/ui-menu.js';
 import { UiTooltip as UiTooltipElement, defineCustomElement as defineUiTooltip } from 'core-library/dist/components/ui-tooltip.js';
 import { UiTypography as UiTypographyElement, defineCustomElement as defineUiTypography } from 'core-library/dist/components/ui-typography.js';
 import { UiXstack as UiXstackElement, defineCustomElement as defineUiXstack } from 'core-library/dist/components/ui-xstack.js';
@@ -55,6 +56,17 @@ export const UiIcon: StencilReactComponent<UiIconElement, UiIconEvents, Componen
     react: React,
     events: {} as UiIconEvents,
     defineCustomElement: defineUiIcon,
+});
+
+export type UiMenuEvents = NonNullable<unknown>;
+
+export const UiMenu: StencilReactComponent<UiMenuElement, UiMenuEvents, Components.UiMenu> = /*@__PURE__*/ createComponent<UiMenuElement, UiMenuEvents, Components.UiMenu>({
+    tagName: 'ui-menu',
+    elementClass: UiMenuElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as UiMenuEvents,
+    defineCustomElement: defineUiMenu,
 });
 
 export type UiTooltipEvents = NonNullable<unknown>;
