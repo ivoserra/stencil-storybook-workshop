@@ -52,10 +52,7 @@ export namespace Components {
           * @default 'left'
          */
         "iconPosition": 'left' | 'right';
-        /**
-          * @default 'Button'
-         */
-        "label": string;
+        "label"?: string;
         /**
           * @default false
          */
@@ -74,6 +71,8 @@ export namespace Components {
         "variant": 'primary' | 'secondary' | 'danger' | 'ghost';
     }
     interface UiIcon {
+    }
+    interface UiMenu {
     }
     interface UiTooltip {
         "content"?: string;
@@ -127,6 +126,12 @@ declare global {
         prototype: HTMLUiIconElement;
         new (): HTMLUiIconElement;
     };
+    interface HTMLUiMenuElement extends Components.UiMenu, HTMLStencilElement {
+    }
+    var HTMLUiMenuElement: {
+        prototype: HTMLUiMenuElement;
+        new (): HTMLUiMenuElement;
+    };
     interface HTMLUiTooltipElement extends Components.UiTooltip, HTMLStencilElement {
     }
     var HTMLUiTooltipElement: {
@@ -155,6 +160,7 @@ declare global {
         "my-component": HTMLMyComponentElement;
         "ui-button": HTMLUiButtonElement;
         "ui-icon": HTMLUiIconElement;
+        "ui-menu": HTMLUiMenuElement;
         "ui-tooltip": HTMLUiTooltipElement;
         "ui-typography": HTMLUiTypographyElement;
         "ui-xstack": HTMLUiXstackElement;
@@ -208,9 +214,6 @@ declare namespace LocalJSX {
           * @default 'left'
          */
         "iconPosition"?: 'left' | 'right';
-        /**
-          * @default 'Button'
-         */
         "label"?: string;
         /**
           * @default false
@@ -231,6 +234,8 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary' | 'danger' | 'ghost';
     }
     interface UiIcon {
+    }
+    interface UiMenu {
     }
     interface UiTooltip {
         "content"?: string;
@@ -284,6 +289,7 @@ declare namespace LocalJSX {
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
         "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
         "ui-icon": UiIcon;
+        "ui-menu": UiMenu;
         "ui-tooltip": Omit<UiTooltip, keyof UiTooltipAttributes> & { [K in keyof UiTooltip & keyof UiTooltipAttributes]?: UiTooltip[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `attr:${K}`]?: UiTooltipAttributes[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `prop:${K}`]?: UiTooltip[K] };
         "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
         "ui-xstack": UiXstack;
@@ -297,6 +303,7 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "ui-button": LocalJSX.IntrinsicElements["ui-button"] & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
             "ui-icon": LocalJSX.IntrinsicElements["ui-icon"] & JSXBase.HTMLAttributes<HTMLUiIconElement>;
+            "ui-menu": LocalJSX.IntrinsicElements["ui-menu"] & JSXBase.HTMLAttributes<HTMLUiMenuElement>;
             "ui-tooltip": LocalJSX.IntrinsicElements["ui-tooltip"] & JSXBase.HTMLAttributes<HTMLUiTooltipElement>;
             "ui-typography": LocalJSX.IntrinsicElements["ui-typography"] & JSXBase.HTMLAttributes<HTMLUiTypographyElement>;
             "ui-xstack": LocalJSX.IntrinsicElements["ui-xstack"] & JSXBase.HTMLAttributes<HTMLUiXstackElement>;

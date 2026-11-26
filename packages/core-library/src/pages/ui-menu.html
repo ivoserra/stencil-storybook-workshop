@@ -1,0 +1,32 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+    <!-- GEIST Font google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <!-- This is a Stencil component library. The following tags are required for the library to work properly. -->
+    <script type="module" src="/build/core-library.esm.js"></script>
+    <script nomodule src="/build/core-library.js"></script>
+
+    <!-- This is the core-library.css file that contains the compiled CSS for the library. -->
+    <link rel="stylesheet" href="/build/core-library.css" />
+  </head>
+  <body>
+    <h1>UI Menu</h1>
+    <ui-xstack>
+      <ui-menu>
+        <ui-button>Menu Trigger</ui-button>
+      </ui-menu>
+      <ui-menu>
+        <ui-button>Menu Trigger</ui-button>
+      </ui-menu>
+    </ui-xstack>
+
+    <ui-menu id="right-click"></ui-menu>
+  </body>
+</html>

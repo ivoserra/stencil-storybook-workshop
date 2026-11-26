@@ -17,7 +17,7 @@ export class UIButton {
   @Prop() active: boolean = false;
 
   // Content
-  @Prop() label: string = 'Button';
+  @Prop() label?: string;
   @Prop() icon: string = '';
   @Prop() iconPosition: 'left' | 'right' = 'left';
 
