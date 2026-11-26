@@ -19,7 +19,7 @@
 | `disabled`        | `disabled`          |             | `boolean`                                                        | `false`     |
 | `icon`            | `icon`              |             | `string`                                                         | `''`        |
 | `iconPosition`    | `icon-position`     |             | `"left" \| "right"`                                              | `'left'`    |
-| `label`           | `label`             |             | `string`                                                         | `'Button'`  |
+| `label`           | `label`             |             | `string`                                                         | `undefined` |
 | `loading`         | `loading`           |             | `boolean`                                                        | `false`     |
 | `size`            | `size`              |             | `"large" \| "medium" \| "small"`                                 | `'medium'`  |
 | `type`            | `type`              |             | `"button" \| "reset" \| "submit"`                                | `'button'`  |

@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { UIMenuItem } from "./components/ui-menu/ui-menu.types";
+export { UIMenuItem } from "./components/ui-menu/ui-menu.types";
 export namespace Components {
     interface MyComponent {
         /**
@@ -73,6 +75,18 @@ export namespace Components {
     interface UiIcon {
     }
     interface UiMenu {
+        /**
+          * @default []
+         */
+        "data": UIMenuItem[];
+        /**
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * @default null
+         */
+        "position": { x: number; y: number } | null;
     }
     interface UiTooltip {
         "content"?: string;
@@ -95,6 +109,10 @@ export namespace Components {
 export interface UiButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUiButtonElement;
+}
+export interface UiMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUiMenuElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -126,7 +144,18 @@ declare global {
         prototype: HTMLUiIconElement;
         new (): HTMLUiIconElement;
     };
+    interface HTMLUiMenuElementEventMap {
+        "close": void;
+    }
     interface HTMLUiMenuElement extends Components.UiMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUiMenuElementEventMap>(type: K, listener: (this: HTMLUiMenuElement, ev: UiMenuCustomEvent<HTMLUiMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUiMenuElementEventMap>(type: K, listener: (this: HTMLUiMenuElement, ev: UiMenuCustomEvent<HTMLUiMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUiMenuElement: {
         prototype: HTMLUiMenuElement;
@@ -236,6 +265,19 @@ declare namespace LocalJSX {
     interface UiIcon {
     }
     interface UiMenu {
+        /**
+          * @default []
+         */
+        "data"?: UIMenuItem[];
+        "onClose"?: (event: UiMenuCustomEvent<void>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * @default null
+         */
+        "position"?: { x: number; y: number } | null;
     }
     interface UiTooltip {
         "content"?: string;
@@ -277,6 +319,9 @@ declare namespace LocalJSX {
         "ariaHaspopup": string;
         "ariaPressed": boolean;
     }
+    interface UiMenuAttributes {
+        "open": boolean;
+    }
     interface UiTooltipAttributes {
         "content": string;
         "placement": 'top' | 'bottom' | 'left' | 'right';
@@ -289,7 +334,7 @@ declare namespace LocalJSX {
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
         "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
         "ui-icon": UiIcon;
-        "ui-menu": UiMenu;
+        "ui-menu": Omit<UiMenu, keyof UiMenuAttributes> & { [K in keyof UiMenu & keyof UiMenuAttributes]?: UiMenu[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `attr:${K}`]?: UiMenuAttributes[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `prop:${K}`]?: UiMenu[K] };
         "ui-tooltip": Omit<UiTooltip, keyof UiTooltipAttributes> & { [K in keyof UiTooltip & keyof UiTooltipAttributes]?: UiTooltip[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `attr:${K}`]?: UiTooltipAttributes[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `prop:${K}`]?: UiTooltip[K] };
         "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
         "ui-xstack": UiXstack;
