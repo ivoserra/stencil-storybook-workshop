@@ -41,7 +41,14 @@ export const UiButton: StencilVueComponent<JSX.UiButton> = /*@__PURE__*/ defineC
 export const UiIcon: StencilVueComponent<JSX.UiIcon> = /*@__PURE__*/ defineContainer<JSX.UiIcon>('ui-icon', undefined);
 
 
-export const UiMenu: StencilVueComponent<JSX.UiMenu> = /*@__PURE__*/ defineContainer<JSX.UiMenu>('ui-menu', undefined);
+export const UiMenu: StencilVueComponent<JSX.UiMenu> = /*@__PURE__*/ defineContainer<JSX.UiMenu>('ui-menu', undefined, [
+  'open',
+  'data',
+  'position',
+  'close'
+], [
+  'close'
+]);
 
 
 export const UiTooltip: StencilVueComponent<JSX.UiTooltip> = /*@__PURE__*/ defineContainer<JSX.UiTooltip>('ui-tooltip', undefined, [

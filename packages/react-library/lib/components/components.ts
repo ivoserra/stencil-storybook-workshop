@@ -18,7 +18,7 @@ import { UiTooltip as UiTooltipElement, defineCustomElement as defineUiTooltip }
 import { UiTypography as UiTypographyElement, defineCustomElement as defineUiTypography } from 'core-library/dist/components/ui-typography.js';
 import { UiXstack as UiXstackElement, defineCustomElement as defineUiXstack } from 'core-library/dist/components/ui-xstack.js';
 import { UiYstack as UiYstackElement, defineCustomElement as defineUiYstack } from 'core-library/dist/components/ui-ystack.js';
-import type { UiButtonCustomEvent } from 'core-library';
+import type { UiButtonCustomEvent, UiMenuCustomEvent } from 'core-library';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type MyComponentEvents = NonNullable<unknown>;
@@ -58,14 +58,18 @@ export const UiIcon: StencilReactComponent<UiIconElement, UiIconEvents, Componen
     defineCustomElement: defineUiIcon,
 });
 
-export type UiMenuEvents = NonNullable<unknown>;
+export type UiMenuEvents = {
+  onClose: EventName<UiMenuCustomEvent<void>>
+};
 
 export const UiMenu: StencilReactComponent<UiMenuElement, UiMenuEvents, Components.UiMenu> = /*@__PURE__*/ createComponent<UiMenuElement, UiMenuEvents, Components.UiMenu>({
     tagName: 'ui-menu',
     elementClass: UiMenuElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {} as UiMenuEvents,
+    events: {
+      onClose: 'close'
+    } as UiMenuEvents,
     defineCustomElement: defineUiMenu,
 });
 
