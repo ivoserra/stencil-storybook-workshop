@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { UIMenuItem } from "./components/ui-menu/ui-menu.types";
+import { UISidebarItem } from "./components/ui-sidebar/ui-sidebar.types";
 export { UIMenuItem } from "./components/ui-menu/ui-menu.types";
+export { UISidebarItem } from "./components/ui-sidebar/ui-sidebar.types";
 export namespace Components {
     interface MyComponent {
         /**
@@ -88,6 +90,24 @@ export namespace Components {
          */
         "position": { x: number; y: number } | null;
     }
+    /**
+     * `ui-sidebar` is a component for rendering a sidebar navigation.
+     * It supports toggling open/closed state and displaying a list of items.
+     */
+    interface UiSidebar {
+        /**
+          * The items to display in the sidebar.
+          * @type {UISidebarItem[]}
+          * @default []
+         */
+        "items": UISidebarItem[];
+        /**
+          * Indicates whether the sidebar is open or closed.
+          * @type {boolean}
+          * @default false
+         */
+        "open": boolean;
+    }
     interface UiTooltip {
         "content"?: string;
         /**
@@ -161,6 +181,16 @@ declare global {
         prototype: HTMLUiMenuElement;
         new (): HTMLUiMenuElement;
     };
+    /**
+     * `ui-sidebar` is a component for rendering a sidebar navigation.
+     * It supports toggling open/closed state and displaying a list of items.
+     */
+    interface HTMLUiSidebarElement extends Components.UiSidebar, HTMLStencilElement {
+    }
+    var HTMLUiSidebarElement: {
+        prototype: HTMLUiSidebarElement;
+        new (): HTMLUiSidebarElement;
+    };
     interface HTMLUiTooltipElement extends Components.UiTooltip, HTMLStencilElement {
     }
     var HTMLUiTooltipElement: {
@@ -190,6 +220,7 @@ declare global {
         "ui-button": HTMLUiButtonElement;
         "ui-icon": HTMLUiIconElement;
         "ui-menu": HTMLUiMenuElement;
+        "ui-sidebar": HTMLUiSidebarElement;
         "ui-tooltip": HTMLUiTooltipElement;
         "ui-typography": HTMLUiTypographyElement;
         "ui-xstack": HTMLUiXstackElement;
@@ -279,6 +310,24 @@ declare namespace LocalJSX {
          */
         "position"?: { x: number; y: number } | null;
     }
+    /**
+     * `ui-sidebar` is a component for rendering a sidebar navigation.
+     * It supports toggling open/closed state and displaying a list of items.
+     */
+    interface UiSidebar {
+        /**
+          * The items to display in the sidebar.
+          * @type {UISidebarItem[]}
+          * @default []
+         */
+        "items"?: UISidebarItem[];
+        /**
+          * Indicates whether the sidebar is open or closed.
+          * @type {boolean}
+          * @default false
+         */
+        "open"?: boolean;
+    }
     interface UiTooltip {
         "content"?: string;
         /**
@@ -322,6 +371,9 @@ declare namespace LocalJSX {
     interface UiMenuAttributes {
         "open": boolean;
     }
+    interface UiSidebarAttributes {
+        "open": boolean;
+    }
     interface UiTooltipAttributes {
         "content": string;
         "placement": 'top' | 'bottom' | 'left' | 'right';
@@ -335,6 +387,7 @@ declare namespace LocalJSX {
         "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
         "ui-icon": UiIcon;
         "ui-menu": Omit<UiMenu, keyof UiMenuAttributes> & { [K in keyof UiMenu & keyof UiMenuAttributes]?: UiMenu[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `attr:${K}`]?: UiMenuAttributes[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `prop:${K}`]?: UiMenu[K] };
+        "ui-sidebar": Omit<UiSidebar, keyof UiSidebarAttributes> & { [K in keyof UiSidebar & keyof UiSidebarAttributes]?: UiSidebar[K] } & { [K in keyof UiSidebar & keyof UiSidebarAttributes as `attr:${K}`]?: UiSidebarAttributes[K] } & { [K in keyof UiSidebar & keyof UiSidebarAttributes as `prop:${K}`]?: UiSidebar[K] };
         "ui-tooltip": Omit<UiTooltip, keyof UiTooltipAttributes> & { [K in keyof UiTooltip & keyof UiTooltipAttributes]?: UiTooltip[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `attr:${K}`]?: UiTooltipAttributes[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `prop:${K}`]?: UiTooltip[K] };
         "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
         "ui-xstack": UiXstack;
@@ -349,6 +402,11 @@ declare module "@stencil/core" {
             "ui-button": LocalJSX.IntrinsicElements["ui-button"] & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
             "ui-icon": LocalJSX.IntrinsicElements["ui-icon"] & JSXBase.HTMLAttributes<HTMLUiIconElement>;
             "ui-menu": LocalJSX.IntrinsicElements["ui-menu"] & JSXBase.HTMLAttributes<HTMLUiMenuElement>;
+            /**
+             * `ui-sidebar` is a component for rendering a sidebar navigation.
+             * It supports toggling open/closed state and displaying a list of items.
+             */
+            "ui-sidebar": LocalJSX.IntrinsicElements["ui-sidebar"] & JSXBase.HTMLAttributes<HTMLUiSidebarElement>;
             "ui-tooltip": LocalJSX.IntrinsicElements["ui-tooltip"] & JSXBase.HTMLAttributes<HTMLUiTooltipElement>;
             "ui-typography": LocalJSX.IntrinsicElements["ui-typography"] & JSXBase.HTMLAttributes<HTMLUiTypographyElement>;
             "ui-xstack": LocalJSX.IntrinsicElements["ui-xstack"] & JSXBase.HTMLAttributes<HTMLUiXstackElement>;
