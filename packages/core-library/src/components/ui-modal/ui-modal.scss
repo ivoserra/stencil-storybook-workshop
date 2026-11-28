@@ -1,0 +1,68 @@
+:host {
+  display: inline-block;
+
+  dialog {
+    box-sizing: border-box;
+
+    // Default width, with responsive limits
+    width: min(40rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+
+    // Height is determined by content
+    height: auto;
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+
+    margin: auto;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background-color: var(--ui-modal-background);
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100dvh - 2rem);
+      min-height: 0;
+    }
+
+    header,
+    footer {
+      flex-shrink: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: var(--ui-border-small) solid var(--ui-border-color);
+
+      button {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        fill: var(--ui-label-color);
+      }
+    }
+
+    section {
+      padding: 1.5rem;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    footer {
+      border-top: var(--ui-border-small) solid var(--ui-border-color);
+      padding: var(--ui-padding-xlarge);
+    }
+  }
+}

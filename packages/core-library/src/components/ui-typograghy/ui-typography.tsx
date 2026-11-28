@@ -6,7 +6,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class UITypography {
-  @Prop() variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h1';
+  @Prop() variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' = 'h1';
 
   render() {
     const Tag = this.variant;

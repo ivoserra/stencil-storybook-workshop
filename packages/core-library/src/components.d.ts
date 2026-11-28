@@ -90,6 +90,29 @@ export namespace Components {
          */
         "position": { x: number; y: number } | null;
     }
+    interface UiModal {
+        /**
+          * @default true
+         */
+        "closable": boolean;
+        "closeModal": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "hasFooter": boolean;
+        "headerTitle"?: string;
+        "height"?: string;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        "openModal": () => Promise<void>;
+        /**
+          * @default true
+         */
+        "outsideClick": boolean;
+        "width"?: string;
+    }
     /**
      * `ui-sidebar` is a component for rendering a sidebar navigation.
      * It supports toggling open/closed state and displaying a list of items.
@@ -119,7 +142,7 @@ export namespace Components {
         /**
           * @default 'h1'
          */
-        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
     }
     interface UiXstack {
     }
@@ -133,6 +156,10 @@ export interface UiButtonCustomEvent<T> extends CustomEvent<T> {
 export interface UiMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUiMenuElement;
+}
+export interface UiModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUiModalElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -181,6 +208,24 @@ declare global {
         prototype: HTMLUiMenuElement;
         new (): HTMLUiMenuElement;
     };
+    interface HTMLUiModalElementEventMap {
+        "close": void;
+        "openChange": boolean;
+    }
+    interface HTMLUiModalElement extends Components.UiModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUiModalElementEventMap>(type: K, listener: (this: HTMLUiModalElement, ev: UiModalCustomEvent<HTMLUiModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUiModalElementEventMap>(type: K, listener: (this: HTMLUiModalElement, ev: UiModalCustomEvent<HTMLUiModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUiModalElement: {
+        prototype: HTMLUiModalElement;
+        new (): HTMLUiModalElement;
+    };
     /**
      * `ui-sidebar` is a component for rendering a sidebar navigation.
      * It supports toggling open/closed state and displaying a list of items.
@@ -220,6 +265,7 @@ declare global {
         "ui-button": HTMLUiButtonElement;
         "ui-icon": HTMLUiIconElement;
         "ui-menu": HTMLUiMenuElement;
+        "ui-modal": HTMLUiModalElement;
         "ui-sidebar": HTMLUiSidebarElement;
         "ui-tooltip": HTMLUiTooltipElement;
         "ui-typography": HTMLUiTypographyElement;
@@ -310,6 +356,29 @@ declare namespace LocalJSX {
          */
         "position"?: { x: number; y: number } | null;
     }
+    interface UiModal {
+        /**
+          * @default true
+         */
+        "closable"?: boolean;
+        /**
+          * @default false
+         */
+        "hasFooter"?: boolean;
+        "headerTitle"?: string;
+        "height"?: string;
+        "onClose"?: (event: UiModalCustomEvent<void>) => void;
+        "onOpenChange"?: (event: UiModalCustomEvent<boolean>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * @default true
+         */
+        "outsideClick"?: boolean;
+        "width"?: string;
+    }
     /**
      * `ui-sidebar` is a component for rendering a sidebar navigation.
      * It supports toggling open/closed state and displaying a list of items.
@@ -339,7 +408,7 @@ declare namespace LocalJSX {
         /**
           * @default 'h1'
          */
-        "variant"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "variant"?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
     }
     interface UiXstack {
     }
@@ -371,6 +440,15 @@ declare namespace LocalJSX {
     interface UiMenuAttributes {
         "open": boolean;
     }
+    interface UiModalAttributes {
+        "open": boolean;
+        "headerTitle": string;
+        "width": string;
+        "height": string;
+        "closable": boolean;
+        "outsideClick": boolean;
+        "hasFooter": boolean;
+    }
     interface UiSidebarAttributes {
         "open": boolean;
     }
@@ -379,7 +457,7 @@ declare namespace LocalJSX {
         "placement": 'top' | 'bottom' | 'left' | 'right';
     }
     interface UiTypographyAttributes {
-        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "variant": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
     }
 
     interface IntrinsicElements {
@@ -387,6 +465,7 @@ declare namespace LocalJSX {
         "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
         "ui-icon": UiIcon;
         "ui-menu": Omit<UiMenu, keyof UiMenuAttributes> & { [K in keyof UiMenu & keyof UiMenuAttributes]?: UiMenu[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `attr:${K}`]?: UiMenuAttributes[K] } & { [K in keyof UiMenu & keyof UiMenuAttributes as `prop:${K}`]?: UiMenu[K] };
+        "ui-modal": Omit<UiModal, keyof UiModalAttributes> & { [K in keyof UiModal & keyof UiModalAttributes]?: UiModal[K] } & { [K in keyof UiModal & keyof UiModalAttributes as `attr:${K}`]?: UiModalAttributes[K] } & { [K in keyof UiModal & keyof UiModalAttributes as `prop:${K}`]?: UiModal[K] };
         "ui-sidebar": Omit<UiSidebar, keyof UiSidebarAttributes> & { [K in keyof UiSidebar & keyof UiSidebarAttributes]?: UiSidebar[K] } & { [K in keyof UiSidebar & keyof UiSidebarAttributes as `attr:${K}`]?: UiSidebarAttributes[K] } & { [K in keyof UiSidebar & keyof UiSidebarAttributes as `prop:${K}`]?: UiSidebar[K] };
         "ui-tooltip": Omit<UiTooltip, keyof UiTooltipAttributes> & { [K in keyof UiTooltip & keyof UiTooltipAttributes]?: UiTooltip[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `attr:${K}`]?: UiTooltipAttributes[K] } & { [K in keyof UiTooltip & keyof UiTooltipAttributes as `prop:${K}`]?: UiTooltip[K] };
         "ui-typography": Omit<UiTypography, keyof UiTypographyAttributes> & { [K in keyof UiTypography & keyof UiTypographyAttributes]?: UiTypography[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `attr:${K}`]?: UiTypographyAttributes[K] } & { [K in keyof UiTypography & keyof UiTypographyAttributes as `prop:${K}`]?: UiTypography[K] };
@@ -402,6 +481,7 @@ declare module "@stencil/core" {
             "ui-button": LocalJSX.IntrinsicElements["ui-button"] & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
             "ui-icon": LocalJSX.IntrinsicElements["ui-icon"] & JSXBase.HTMLAttributes<HTMLUiIconElement>;
             "ui-menu": LocalJSX.IntrinsicElements["ui-menu"] & JSXBase.HTMLAttributes<HTMLUiMenuElement>;
+            "ui-modal": LocalJSX.IntrinsicElements["ui-modal"] & JSXBase.HTMLAttributes<HTMLUiModalElement>;
             /**
              * `ui-sidebar` is a component for rendering a sidebar navigation.
              * It supports toggling open/closed state and displaying a list of items.
